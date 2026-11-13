@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light">
+<title>健康知识管理体验研究 · 实验二</title>
+<style>:root{--ink:#24272c;--muted:#626b75;--line:#e6e7e9;--surface:#f8f8f7;--soft:#f2f4f5;--accent:#263d54;--danger:#9a3434;--radius:12px;--font:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:#fff;font-family:var(--font);font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased}button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}a{color:#365c84}a:hover{text-decoration:none}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #a9bdd3;outline-offset:2px}
+.shell{display:grid;grid-template-columns:224px minmax(0,1fr);min-height:100vh}.sidebar{border-right:1px solid var(--line);padding:28px 18px;background:#fcfcfb;display:flex;flex-direction:column;gap:28px}.brand{font-size:18px;font-weight:650;letter-spacing:.04em;padding:0 10px}.brand small{display:block;font-size:11px;color:#7b858e;font-weight:400;letter-spacing:.06em;margin-top:3px}.side-label{font-size:11px;letter-spacing:.1em;color:#8b9299;padding:0 10px;margin-bottom:12px}.steps{display:flex;flex-direction:column;gap:5px}.step{display:flex;gap:10px;align-items:center;padding:10px 10px;border-radius:8px;color:#9ca3aa;font-size:13px}.step .num{width:20px;height:20px;border:1px solid #d7dce0;border-radius:100%;font-size:11px;text-align:center;line-height:18px;flex-shrink:0}.step.active{background:#ecf0f3;color:#243a4d;font-weight:580}.step.complete{color:#667480}.step.complete .num{border-color:#9aabb6;background:#e9eef2}.side-foot{color:#8c949b;font-size:11px;margin-top:auto;padding:0 10px}.main{min-width:0}.topbar{height:65px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:#fff}.topbar-title{font-size:13px;font-weight:600}.topbar-status{color:#91979d;font-size:12px}.content{max-width:900px;padding:42px 30px 80px;margin:auto}.content.narrow{max-width:760px}.eyebrow{font-size:12px;color:#6a7e90;letter-spacing:.08em;font-weight:600;margin-bottom:8px}.h1{font-size:28px;line-height:1.4;letter-spacing:-.03em;margin:0 0 16px;font-weight:630}.sub{color:var(--muted);margin:0 0 24px}.lead{font-size:16px;line-height:1.95}.panel{padding:25px 27px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}.soft{background:var(--surface)}.note{font-size:13px;color:var(--muted)}.space{height:18px}.rule{height:1px;background:var(--line);margin:22px 0}.mini-title{font-weight:640;margin:0 0 12px}.metric-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.metric{border:1px solid var(--line);padding:17px 19px;border-radius:10px}.metric strong{font-weight:650;font-size:25px;display:block;line-height:1.4}.metric span{color:var(--muted);font-size:13px}.bullet-block{margin:12px 0;padding-left:22px}.bullet-block li{margin:8px 0}.action-bar{border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:30px;padding-top:22px}.primary{background:#293d50;color:white;border:1px solid #293d50;border-radius:8px;padding:11px 23px;font-weight:590;font-size:14px;min-height:44px}.primary:hover:not(:disabled){background:#192c3e}.secondary{background:white;color:#3c4c5c;border:1px solid #cfd5d9;border-radius:8px;padding:10px 21px;min-height:44px}.muted-btn{background:transparent;border:0;padding:10px;color:#596775}.tiny{font-size:12px;color:var(--muted)}.checkline{display:flex;align-items:flex-start;gap:10px;line-height:1.65;padding:9px 0;font-size:14px}.checkline input{margin-top:6px;accent-color:#384f65}.alert{padding:14px 17px;border-radius:9px;background:#faf3f2;color:#792e2e;border:1px solid #e9d7d4;font-size:14px}.error{color:#a62b2b;font-size:13px;min-height:20px}.success{background:#eff7f2;border:1px solid #d0e1d7;color:#225540;padding:16px;border-radius:9px}
+.chat-page{max-width:1120px;padding-top:25px}.chat-layout{display:grid;grid-template-columns:minmax(0,1fr) 265px;gap:24px}.chat-layout.no-sources{grid-template-columns:minmax(0,1fr)}.chat-layout.no-sources .chat-column{width:100%;max-width:790px;margin:0 auto}.chat-column{min-width:0}.conversation-title{font-size:18px;font-weight:620;padding:9px 0 2px}.conversation-sub{font-size:12px;color:var(--muted)}.chat-stream{margin-top:26px}.msg{display:flex;gap:11px;margin:0 0 25px}.msg.user{justify-content:flex-end}.bubble-user{background:#f2f3f3;border-radius:14px 14px 5px 14px;padding:14px 18px;max-width:86%;font-size:14px;line-height:1.9}.assistant-avatar{height:28px;width:28px;border-radius:7px;background:#2e4356;color:white;display:grid;place-items:center;font-size:13px;flex:0 0 auto;margin-top:3px}.bubble-assistant{max-width:calc(100% - 38px);padding:0 4px;font-size:14px}.bubble-assistant p{margin:0 0 13px}.chat-name{font-size:12px;color:#6e7780;margin-bottom:7px;font-weight:600}.source-cite{background:none;border:0;padding:0 3px;vertical-align:super;color:#476c98;text-decoration:underline;font-size:11px;line-height:1.2;font-weight:700}.source-cite:hover{color:#1a4068}.source-panel{align-self:start;position:sticky;top:20px;border:1px solid var(--line);border-radius:11px;overflow:hidden}.source-head{padding:16px 18px;border-bottom:1px solid var(--line);font-size:13px;font-weight:630}.source-caption{padding:13px 18px 0;font-size:12px;color:var(--muted)}.source-item{display:flex;gap:11px;text-align:left;width:100%;border:0;border-bottom:1px solid #ededed;background:#fff;padding:14px 18px}.source-item:last-child{border-bottom:0}.source-item:hover,.source-item.selected{background:#f5f7f8}.source-index{flex:0 0 21px;width:21px;height:21px;border:1px solid #d5dde3;border-radius:5px;font-size:12px;line-height:19px;text-align:center;color:#48627a}.source-name{font-size:12px;font-weight:600;line-height:1.7}.source-desc{font-size:11px;color:var(--muted);line-height:1.65}.source-detail{margin-top:12px;border:1px solid var(--line);border-radius:9px;padding:14px 16px;font-size:12px;background:#f9fafb}.source-detail b{display:block;margin-bottom:5px;font-weight:640}.source-note{font-size:12px;color:var(--muted);margin:15px 0 0}.chat-end{height:40px;border:1px solid var(--line);border-radius:30px;color:#a0a5aa;font-size:13px;display:flex;justify-content:space-between;align-items:center;padding:0 18px;margin:30px 0 12px}.chat-end span:last-child{font-size:18px}
+.question{padding:17px 0 23px;border-bottom:1px solid var(--line)}.question:first-child{padding-top:0}.question:last-child{border-bottom:0}.q-text{font-size:15px;margin-bottom:14px}.q-options{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.choice{position:relative}.choice input{position:absolute;opacity:0;width:0;height:0}.choice label{display:flex;justify-content:center;align-items:center;border:1px solid #d9dcdf;background:#fff;min-height:41px;border-radius:8px;font-size:14px;cursor:pointer}.choice input:checked+label{background:#2a4155;border-color:#2a4155;color:#fff}.choice input:focus-visible+label{outline:3px solid #b0c3d3;outline-offset:2px}.scale-ends{display:flex;justify-content:space-between;color:#8e959b;font-size:11px;margin-top:6px}.question-group-title{font-size:16px;margin:22px 0 14px;font-weight:620}.verification-table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0}.verification-table th,.verification-table td{border-bottom:1px solid var(--line);padding:11px 7px;text-align:left}.verification-table th{font-size:12px;color:var(--muted);font-weight:500}.calc{padding:15px 18px;border-radius:9px;background:#f5f7f8;font-size:15px}.calc b{font-size:20px}.readback{font-size:13px;color:var(--muted);padding:8px 0 0}.thanks{font-size:15px;line-height:1.9}
+@media(max-width:860px){.shell{grid-template-columns:1fr}.sidebar{display:none}.topbar{padding:0 18px;height:54px}.topbar-status{font-size:11px}.content{padding:25px 18px 58px}.chat-layout{grid-template-columns:1fr;gap:18px}.source-panel{position:static}.chat-page{padding-top:22px}.h1{font-size:23px}.panel{padding:20px 18px}.chat-stream{margin-top:16px}.bubble-user{max-width:90%}.metric-list{gap:10px}.metric{padding:13px}.metric strong{font-size:21px}}
+@media(max-width:430px){.q-options{gap:5px}.choice label{min-height:38px}.action-bar{gap:9px}.primary,.secondary{padding-left:13px;padding-right:13px}.bubble-assistant{font-size:14px}.content{padding-left:14px;padding-right:14px}}
+
+/* 阅读理解及来源操纵检验：保留简洁原生问卷视觉 */
+.mc-panel .question:last-child{padding-bottom:0}
+.mc-panel .question:first-child{padding-top:0}
+.mc-list{display:grid;gap:8px}
+.mc-option{display:flex;align-items:flex-start;gap:12px;padding:11px 13px;border:1px solid var(--line);border-radius:8px;line-height:1.55;cursor:pointer;font-size:14px;background:#fff}
+.mc-option:has(input:checked){border-color:#9eb3c3;background:#f4f7f9}
+.mc-option input{margin-top:4px;accent-color:#293d50;width:16px;height:16px;flex-shrink:0}
+.mc-option:hover{background:#f8f9fa}
+
+/* Study 2: compact ChatGPT-like segmented reasoning intensity display.
+   All arms have the SAME track, position, size and color. Only the active segment changes.
+   In the real study the control is intentionally locked. Only research preview can switch it. */
+.ability-cue{border:1px solid #dce6ee;border-radius:15px;background:linear-gradient(145deg,#f9fcff 0%,#f5f9fd 57%,#f8fbff 100%);margin:14px 0 20px;padding:19px 21px 17px}
+.ability-cue-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.ability-head{font-size:14px;font-weight:660;letter-spacing:.01em;color:#263646}
+.ability-tag{font-size:11px;color:#7b8893;letter-spacing:.025em}
+.ability-control-row{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.ability-segmented{--segment-index:0;position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:min(100%,350px);height:55px;background:linear-gradient(125deg,#eaf0f6 0%,#e8eff7 50%,#edf0f5 100%);border:1px solid #d8e2ec;border-radius:999px;padding:4px;isolation:isolate;cursor:default}
+.ability-slider-thumb{position:absolute;top:4px;left:4px;bottom:4px;width:calc((100% - 8px)/3);border:1px solid rgba(116,153,183,.42);border-radius:999px;background:linear-gradient(125deg,#fafcff 0%,#e1efff 51%,#c9e5fa 100%);box-shadow:0 2px 8px rgba(43,89,132,.16),inset 0 1px rgba(255,255,255,.92);transform:translateX(calc(var(--segment-index) * 100%));transition:none;z-index:0;pointer-events:none}
+.ability-segment{border:0;background:transparent;display:grid;place-items:center;position:relative;z-index:1;border-radius:999px;font-size:18px;font-weight:520;color:#808a94;letter-spacing:.08em;line-height:1.1;padding:0;min-width:0;user-select:none}
+.ability-segment.is-active{color:#1e527a;font-weight:760}
+.ability-segmented .ability-segment{cursor:default;pointer-events:none}
+.ability-selected{font-size:12px;color:#667481;white-space:nowrap}
+.ability-selected strong{display:inline-block;margin-left:5px;font-weight:700;color:#1e527a;font-size:19px;line-height:1}
+.ability-detail{font-size:13px;color:#4e5e6a;line-height:1.7;margin:13px 0 0}
+.ability-caution{font-size:11px;color:#87919a;line-height:1.6;margin:8px 0 0}
+.topbar-right{display:flex;gap:12px;align-items:center}
+.topbar-level{border-radius:999px;border:1px solid #e1e5e9;background:#f4f6f7;color:#4c5c69;padding:4px 12px;white-space:nowrap;display:inline-flex;gap:7px;align-items:center;font-size:11px;font-weight:570}
+.topbar-level strong{font-size:13px;line-height:1.15;color:#283d51}
+@media(max-width:560px){.ability-cue{padding:15px 15px 14px}.ability-segmented{width:100%;height:52px}.ability-control-row{gap:10px}.ability-selected{width:100%;text-align:right;margin-top:0}.ability-head{font-size:13px}.topbar.chat-active .topbar-status{display:none}.topbar-right{gap:6px}.topbar-level{font-size:11px;padding:4px 10px}}
+@media(prefers-reduced-motion:reduce){.ability-slider-thumb{transition:none}}
+.preview-row{display:flex;flex-direction:column;gap:8px;margin-top:9px}
+.preview-row select{font-size:12px;width:100%;padding:8px;border:1px solid #d5d9dc;border-radius:5px;background:#fff}
+.demo-tag{display:inline-block;font-size:11px;border:1px solid #aab5bd;background:#f3f5f7;padding:2px 7px;border-radius:5px;color:#53616b;margin:4px 0 8px}
+.check-item{margin-top:16px}
+.check-caption{font-size:12px;color:var(--muted);margin:4px 0 9px}
+.field-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field-pair select,.field-pair input{border-radius:8px;border:1px solid #ced5da;padding:9px 10px;min-height:42px;width:100%;background:white}
+@media(max-width:560px){.field-pair{grid-template-columns:1fr}}
+</style>
+</head>
+<body><div id="app"></div>
+<script>
+// Study 2: GitHub Pages + W3Forms. This is a PUBLIC client-side submission key.
+// The key was transcribed from the researcher's W3Forms screenshot.
+// Keep domain restrictions enabled in W3Forms Settings; never put account passwords here.
+// file:// opens in researcher preview; a hosted HTTPS page collects live responses.
+window.IJIM_CONFIG = {
+  W3FORMS_ACCESS_KEY: 'w3f_71c4698396e7c03f7dfd5415944aaf4da49ca8bc7856d96a',
+  W3FORMS_API_URL: 'https://api.w3forms.com/submit',
+  STUDY_ID: 'IJIM-STUDY2-2026',
+  MIN_CHAT_SECONDS: 12,
+  MIN_VERIFY_SECONDS: 8
+};
+
+/* IJIM Study 2, standalone 3(source) x 3(ability) stimulus. */
+(() => {
+  'use strict';
+  const CFG = window.IJIM_CONFIG || {};
+  const w3Key = String(CFG.W3FORMS_ACCESS_KEY || '').trim();
+  const w3Endpoint = String(CFG.W3FORMS_API_URL || 'https://api.w3forms.com/submit');
+  const endpointReady = /^w3f_[a-z0-9]+$/i.test(w3Key) && w3Endpoint === 'https://api.w3forms.com/submit';
+  const params = new URLSearchParams(location.search);
+  // Opening the HTML as a local file or adding ?preview=1 cannot upload survey data.
+  const preview = !endpointReady || location.protocol === 'file:' ||
+    window.IJIM_RESEARCH_PREVIEW === true || params.get('preview') === '1';
+  const KEY = preview ? 'ijim_study2_w3_preview_v4' : 'ijim_study2_w3_live_v4';
+  const VERSION = 4;
+  const names = ['阅读说明','知识咨询','初步评价','独立核验','期望评价','再次评价','情绪评价','理解检验','完成提交'];
+  const sourceConditions = {
+    G1: {short:'未提供知识来源说明',name:'无来源披露（基线组）',description:'',refs:[]},
+    G2: {short:'健康专家意见',name:'健康领域专家知识摘要',
+      description:'本次回答由健康知识助手参考平台提供的健康领域专家知识摘要形成。',
+      refs:[
+        ['健康领域专家知识摘要：活动建议','EX-PA-01 · 专家知识摘要','关于成年人每周有氧活动建议的专业知识摘要。'],
+        ['健康领域专家知识摘要：强度换算','EX-PA-02 · 专家知识摘要','关于不同运动强度可以进行等效比较的知识摘要。'],
+        ['AI 对专家知识的本次应用','AI-OUT-PA-03 · 模型分析摘要','健康知识助手结合上述知识摘要及本周运动记录给出的判断，并非专家本人对该个案的结论。']
+      ]},
+    G3: {short:'权威健康数据库',name:'公共健康知识数据库',
+      description:'本次回答由健康知识助手参考权威公共卫生指南条目形成。',
+      refs:[
+        ['WHO 成人身体活动建议','KB-WHO-PA-01 · 公共指南知识条目','资料依据：世界卫生组织关于成年人每周中等或高强度有氧身体活动的推荐。'],
+        ['WHO 运动强度的等效组合','KB-WHO-PA-02 · 公共指南知识条目','资料依据：世界卫生组织关于不同强度有氧活动可进行等效组合的说明。'],
+        ['AI 对数据库知识的本次应用','AI-OUT-PA-03 · 模型分析摘要','模型将指南规则应用到本周运动记录后得出的判断，属于生成内容，不代表 WHO 的独立核验结论。']
+      ]}
+  };
+  // Same presentation style, location, and disclaimer in all 3 AI ability conditions.
+  // All 9 conditions show identical dialogue and verification information.
+  const abilityConditions = {
+    // Inspired by the low/medium/high thinking-effort UI convention in AI assistants.
+    // These are simulated labels, NOT real ChatGPT model configurations or measured performance.
+    A1: {level:'低',short:'低推理等级',name:'低强度推理',en:'LOW · 1/3',tier:1,
+      detail:'当前使用低推理强度：以较快的信息提取与简单判断为主，通常投入较少的分析步骤。'},
+    A2: {level:'中',short:'中推理等级',name:'中强度推理',en:'MEDIUM · 2/3',tier:2,
+      detail:'当前使用中推理强度：结合多项信息进行分析，通常投入适中的思考步骤以完成多步判断。'},
+    A3: {level:'高',short:'高推理等级',name:'高强度推理',en:'HIGH · 3/3',tier:3,
+      detail:'当前使用高推理强度：更深入地分析多项条件，通常投入更多的思考步骤以完成复杂判断。'}
+  };
+  const scales = {
+    pre:[
+      ['TR1','我对这个健康知识助手有信心。'],
+      ['TR2','我认为这个健康知识助手是可靠的。'],
+      ['TR3','我信任这个健康知识助手。']
+    ],
+    ae:[
+      ['AE1','在看到核验结果之前，我预计这个助手能够准确处理这类健康知识问题。'],
+      ['AE2','在看到核验结果之前，我认为这个助手可以正确整合不同运动强度的信息。'],
+      ['AE3','在看到核验结果之前，我对这个助手处理多步判断任务的能力抱有较高期待。']
+    ],
+    ev:[
+      ['EV1','这段回答被证实存在错误，符合我此前的预期。'],
+      ['EV2','得知这段回答存在错误，让我感到意外。'],
+      ['EV3','这段回答被证实错误的结果，与我此前的预期不符。']
+    ],
+    post:[
+      ['TR1','我对这个健康知识助手有信心。'],
+      ['TR2','我认为这个健康知识助手是可靠的。'],
+      ['TR3','我信任这个健康知识助手。']
+    ],
+    dis:[
+      ['DIS1','这次错误回答在多大程度上辜负了你对健康知识助手的期待？'],
+      ['DIS2','当你需要准确健康信息时，这个助手在多大程度上让你感到失望？'],
+      ['DIS3','这个健康知识助手在多大程度上未能提供你需要的信息支持？']
+    ],
+    fr:[
+      ['FR1','得知这个助手给出了错误结论，我感到沮丧。'],
+      ['FR2','这次错误回答让我感到挫败。'],
+      ['FR3','这次咨询结果让我感到烦躁。']
+    ]
+  };
+  const app = document.getElementById('app');
+  const sourceKeys = ['G1','G2','G3'];
+  const abilityKeys = ['A1','A2','A3'];
+  function makeUUID(){
+    if (crypto && crypto.randomUUID) return crypto.randomUUID();
+    const b=new Uint8Array(16); crypto.getRandomValues(b);
+    b[6]=(b[6]&15)|64;b[8]=(b[8]&63)|128;
+    return Array.from(b,(n,i)=>n.toString(16).padStart(2,'0')+([3,5,7,9].includes(i)?'-':'')).join('');
+  }
+  function randomAssignment(){const r=new Uint32Array(1);crypto.getRandomValues(r);const k=r[0]%9;return {source:sourceKeys[Math.floor(k/3)],ability:abilityKeys[k%3]};}
+  function emptyChecks(){return {MC1:'',SC1:null,SC2:null,SC3:null,MC3:'',MC_ability:'',AC1:null,AC2:null,AC3:null};}
+  function initialState(){
+    const assignment=randomAssignment();
+    return {version:VERSION,session_id:makeUUID(),source:assignment.source,ability:assignment.ability,
+      allocation_seq:null,allocation_block:null,allocation_position:null,allocation_method:preview?'preview_only':'client_crypto_random9',
+      stage:0,started_at:new Date().toISOString(),stage_enter_at:Date.now(),consent:false,adult:false,
+      answers:{pre:{},ae:{},ev:{},post:{},dis:{},fr:{}}, checks:emptyChecks(),
+      read_seconds:{chat:0,verify:0},source_clicks:[],comprehension:'',
+      age:'',gender:'',submitted:false,queued:false,submit_error:''};
+  }
+  let state;
+  try {state=JSON.parse(sessionStorage.getItem(KEY))||initialState();}catch{state=initialState();}
+  if(state.version!==VERSION ||
+    (!sourceConditions[state.source]||!abilityConditions[state.ability])) state=initialState();
+  let sending=false,interval=null,chosenSource=-1;
+  function save(){try{sessionStorage.setItem(KEY,JSON.stringify(state));}catch{}}
+  const h=x=>String(x).replace(/[&<>"']/g,t=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[t]));
+  const m=s=>`<p>${s}</p>`;
+  function stepShell(body,wide=false){
+    const active=Math.min(state.stage,8);
+    const left=names.map((n,i)=>`<div class="step ${i===active?'active':i<active?'complete':''}"><span class="num">${i+1}</span><span>${n}</span></div>`).join('');
+    const sourceSelect=sourceKeys.map(k=>`<option value="${k}" ${state.source===k?'selected':''}>${k} ${sourceConditions[k].short}</option>`).join('');
+    const abilitySelect=abilityKeys.map(k=>`<option value="${k}" ${state.ability===k?'selected':''}>${k} ${abilityConditions[k].short}</option>`).join('');
+    const previewTool=preview?`<div style="padding:12px;border:1px solid #e1e4e6;background:#fff;border-radius:10px;font-size:12px"><b>仅研究人员预览</b><div class="demo-tag">绝不上传答卷</div><div class="preview-row"><select id="preview-source" aria-label="预览来源条件">${sourceSelect}</select><select id="preview-ability" aria-label="预览推理能力条件">${abilitySelect}</select></div><button class="muted-btn" data-action="reset" style="font-size:12px">重置体验</button></div>`:'';
+    return `<div class="shell"><aside class="sidebar"><div class="brand">知见<small>健康知识管理体验</small></div><div><div class="side-label">研究流程</div><nav class="steps" aria-label="研究流程">${left}</nav></div>${previewTool}<div class="side-foot">个人健康知识管理研究<br/>研究材料仅用于学术目的</div></aside><main class="main"><header class="topbar ${state.stage===1?'chat-active':''}"><span class="topbar-title">健康知识管理体验研究</span><div class="topbar-right">${state.stage===1?`<span class="topbar-level" aria-label="当前AI推理等级：${abilityConditions[state.ability].level}">推理强度 <strong>${abilityConditions[state.ability].level}</strong></span>`:''}<span class="topbar-status">${preview?'研究人员预览 · 不上传':'匿名研究 · 第 '+(active+1)+' / 9 步'}</span></div></header><div class="content ${wide?'chat-page':'narrow'}">${body}</div></main></div>`;
+  }
+  function buttons(next='继续',back=false,nextAction='next'){
+    return `<div class="action-bar">${back&&preview?'<button class="secondary" data-action="prev">上一步</button>':'<span class="tiny">请按顺序完成页面内容</span>'}<button class="primary" data-action="${nextAction}">${next}</button></div>`;
+  }
+  function intro(){return `<div class="eyebrow">研究说明 · 第一步</div><h1 class="h1">关于日常健康知识使用的一项研究</h1><p class="sub">请认真阅读。整个体验约需5–8分钟，页面展示的是模拟健康知识咨询情景。</p><section class="panel soft"><p class="mini-title">请设想自己正处于以下情景</p><p>你最近开始整理自己的每周运动情况，希望知道运动量是否达到了成年人每周有氧身体活动的最低推荐量。</p><p>你已经记录了本周的两类身体活动，但不太确定不同运动强度能否合并计算。因此，你准备利用一款数字健康知识助手，帮助你了解相关知识并整理每周健康记录。</p><div class="metric-list"><div class="metric"><strong>95 分钟</strong><span>本周中等强度有氧活动</span></div><div class="metric"><strong>20 分钟</strong><span>本周高强度有氧活动</span></div></div><p class="note">这些运动记录是研究情景中预先设定的示例，并非要求你提供个人真实健康数据。</p><div class="rule"></div><p class="mini-title">参加说明</p><p class="note">接下来你将阅读一段健康知识咨询记录，并对信息及使用体验作出评价。部分信息为研究情景材料，实验结束后将提供正确的解释。研究不要求填写姓名、电话号码、真实病史或真实运动记录。问卷将通过第三方平台接收匿名答卷，参与完全自愿，可在提交前退出。匿名答卷包括实验条件、评分、来源识别及页面阅读时长；正式发放前研究人员应核查W3Forms平台的访问权限、数据处理条款与保留期限。</p></section><section style="margin-top:18px"><label class="checkline"><input type="checkbox" data-check="adult" ${state.adult?'checked':''}><span>我已年满18周岁。</span></label><label class="checkline"><input type="checkbox" data-check="consent" ${state.consent?'checked':''}><span>我已阅读上述说明，知晓这是模拟情景，自愿参与匿名研究。</span></label></section><div id="inline-error" class="error" aria-live="polite"></div>${buttons('开始体验')}`;}
+  function cite(n){return `<button class="source-cite" title="查看引用${n}" aria-label="查看引用${n}" data-source="${n-1}">[${n}]</button>`;}
+  function abilityCue(){
+    const a=abilityConditions[state.ability];
+    const levels=[['A1','低'],['A2','中'],['A3','高']];
+    // All levels are read-only. Researcher switching is available ONLY in the sidebar.
+    const segment=levels.map(([key,txt])=>{
+      const selected=state.ability===key;
+      return `<span class="ability-segment${selected?' is-active':''}" ${selected?'aria-current="true"':''}>${txt}</span>`;
+    }).join('');
+    return `<section class="ability-cue" aria-label="AI 推理强度：${a.level}">
+      <div class="ability-cue-top"><span class="ability-head">AI 推理强度</span><span class="ability-tag">当前助手设置</span></div>
+      <div class="ability-control-row">
+        <div class="ability-segmented is-locked" style="--segment-index:${a.tier-1}" role="group" aria-label="AI推理强度等级，当前为${a.level}">
+          <span class="ability-slider-thumb" aria-hidden="true"></span>${segment}
+        </div>
+        <div class="ability-selected">当前档位<strong>${a.level}</strong></div>
+      </div>
+      <p class="ability-detail">${h(a.detail)}</p><p class="ability-caution">这是研究情景中的模拟推理强度设置，并非真实AI能力评测或准确性保证。</p>
+    </section>`;
+  }
+  function chat(){
+    const c=sourceConditions[state.source],hasSource=c.refs.length>0;
+    const cited=n=>hasSource?cite(n):'';
+    const msgUser=t=>`<div class="msg user"><div class="bubble-user">${t}</div></div>`;
+    const msgAi=t=>`<div class="msg"><div class="assistant-avatar" aria-hidden="true">知</div><div class="bubble-assistant"><div class="chat-name">健康知识助手</div>${t}</div></div>`;
+    const refs=c.refs.map((r,i)=>`<button class="source-item ${chosenSource===i?'selected':''}" data-source="${i}"><span class="source-index">${i+1}</span><span><span class="source-name">${h(r[0])}</span><span class="source-desc">${h(r[1])}</span></span></button>`).join('');
+    const detail=hasSource && chosenSource>=0?`<div class="source-detail"><b>[${chosenSource+1}] ${h(c.refs[chosenSource][0])}</b>${h(c.refs[chosenSource][2])}</div>`:'<div class="source-detail">点击正文中的 [1]、[2] 或 [3] 查看对应说明。</div>';
+    return `<div class="eyebrow">知识咨询 · 第二步</div><h1 class="h1">我的每周运动量是否达标？</h1><div class="chat-layout ${hasSource?'':'no-sources'}"><div class="chat-column"><div class="conversation-title">健康知识助手</div>${abilityCue()}${hasSource?`<div class="conversation-sub">本次回答参考的知识依据：<b>${h(c.short)}</b></div>`:''}<div class="chat-stream">${msgUser('你好，我在整理个人运动记录。本周进行了95分钟中等强度运动和20分钟高强度运动。请问，我是否达到了成年人每周有氧活动的最低推荐量？')}${msgAi(m(`你好。成年人每周的有氧身体活动可以包括中等强度和高强度活动，相关建议允许将两类活动作等效组合${cited(1)}。`)+m(`根据你提供的运动记录，这两类活动可以一起用于判断是否达到基本推荐量${cited(2)}。结合当前记录，我的判断是：<b>你本周的有氧活动量已经达到最低推荐量</b>${cited(3)}。`))}${msgUser('我以前以为要把中等强度和高强度分别算够才行。这样合并计算也是可以的吗？')}${msgAi(m(`可以合并判断。不同强度的有氧活动不一定需要分别达到各自的最低时长，关键是综合考虑活动强度与累计时间${cited(2)}。`)+m(`因此，在你这份运动周记录中，两类运动应放在一起评价；按目前的判断，已经满足最低推荐要求${cited(3)}。`))}${msgUser('那我能在自己的健康周报里标记为“本周运动量达标”吗？')}${msgAi(m(`可以。就本次讨论的“成年人每周有氧活动最低推荐量”这一指标而言，你可以先将本周记录标注为<b>已达标</b>${cited(3)}。`)+m('需要说明的是，每周有氧活动量只是健康管理中的一项指标，并不能单独代表整体健康状况。'))}${msgUser('好的。我准备根据这个结论整理本周的运动总结。')}${msgAi(m('好的。你可以保留两种活动的原始时长，便于今后比较每周记录。'))}</div><div class="chat-end"><span>继续询问健康知识助手…</span><span>↑</span></div><p class="note">请根据刚才看到的完整对话形成自己的初步判断，之后进入下一步。</p></div>${hasSource?`<aside><div class="source-panel"><div class="source-head">回答的知识依据</div><div class="source-caption">${h(c.description)}</div><div style="margin-top:10px">${refs}</div></div>${detail}<p class="source-note">点击引文编号可以查看标示的资料说明。</p></aside>`:''}</div><div id="inline-error" class="error" aria-live="polite"></div>${buttons('继续评价')}`;
+  }
+  function questionBlock(key,arr,ends=['非常不同意','非常同意']){
+    return `<section class="panel" style="padding-top:5px;padding-bottom:5px">${arr.map(([id,q],idx)=>{
+      const value=state.answers[key][id],group=key+'_'+id;
+      return `<div class="question"><div class="q-text">${idx+1}. ${h(q)}</div><div class="q-options" role="radiogroup" aria-label="${h(q)}">${[1,2,3,4,5,6,7].map(n=>`<span class="choice"><input type="radio" name="${group}" id="${group}_${n}" data-scale="${key}" data-item="${id}" value="${n}" ${value===n?'checked':''}><label for="${group}_${n}">${n}</label></span>`).join('')}</div><div class="scale-ends"><span>${ends[0]}</span><span>${ends[1]}</span></div></div>`;}).join('')}</section>`;
+  }
+  function pre(){return `<div class="eyebrow">初步评价 · 第三步</div><h1 class="h1">请评价刚才的知识咨询体验</h1><p class="sub">目前你尚未看到独立核验结果。请仅根据刚才看到的对话与系统说明作出判断。</p><h2 class="question-group-title">对健康知识助手的初步信任</h2>${questionBlock('pre',scales.pre)}<div class="space"></div><h2 class="question-group-title">对当前助手能力的事前期待</h2>${questionBlock('ae',scales.ae)}<div id="inline-error" class="error" aria-live="polite"></div>${buttons('提交初步评价')}`;}
+  function verify(){return `<div class="eyebrow">信息核验 · 第四步</div><h1 class="h1">独立核验结果</h1><p class="sub">现在为你展示对上述回答的核验结果，请认真阅读。</p><div class="alert"><b>核验发现：健康知识助手此前的“已达标”结论不正确。</b></div><div class="space"></div><section class="panel"><p class="mini-title">核验标准</p><p>根据世界卫生组织（WHO）针对成年人的身体活动建议，每周至少应完成 <b>150分钟中等强度有氧身体活动</b>，或 <b>75分钟高强度有氧身体活动</b>，或达到两类活动的等效组合。</p><p>本次情景采用通常的等效换算：<b>1分钟高强度活动约等于2分钟中等强度活动</b>。</p><div class="rule"></div><p class="mini-title">根据情景记录重新计算</p><table class="verification-table"><thead><tr><th>活动类型</th><th>实际时长</th><th>中等强度等效时长</th></tr></thead><tbody><tr><td>中等强度</td><td>95分钟</td><td>95分钟</td></tr><tr><td>高强度</td><td>20分钟</td><td>40分钟</td></tr><tr><td><b>合计</b></td><td>—</td><td><b>135分钟</b></td></tr></tbody></table><div class="calc">95 + 20 × 2 = <b>135分钟</b> &lt; 150分钟</div><p><b>正确结论：</b>这份模拟运动记录尚未达到所比较的每周最低有氧活动推荐量，还差15分钟中等强度等效活动量。</p><p class="note">核验参考：世界卫生组织《身体活动和久坐行为指南》（2020）及公开身体活动建议。研究中的运动记录为虚拟数据，并非个体医疗建议。</p></section><div class="space"></div><p class="readback" id="read-wait"></p><div id="inline-error" class="error" aria-live="polite"></div>${buttons('阅读完毕，继续评价')}`;}
+  function ev(){return `<div class="eyebrow">体验评价 · 第五步</div><h1 class="h1">请评价这次核验结果</h1><p class="sub">请根据你看到对话、随后得知其结论有误的整个过程，评价以下陈述。</p>${questionBlock('ev',scales.ev)}<div id="inline-error" class="error" aria-live="polite"></div>${buttons('继续')}`;}
+  function post(){return `<div class="eyebrow">体验评价 · 第六步</div><h1 class="h1">请重新评价健康知识助手</h1><p class="sub">现在你已经看到独立核验结果，请评价你此刻对同一个健康知识助手的看法。</p>${questionBlock('post',scales.post)}<div id="inline-error" class="error" aria-live="polite"></div>${buttons('继续')}`;}
+  function dis(){return `<div class="eyebrow">体验评价 · 第七步</div><h1 class="h1">请评价你的实际感受</h1><p class="sub">回想刚才得知健康知识助手的回答有误时，你产生了怎样的感受？</p><h2 class="question-group-title">失望情绪</h2>${questionBlock('dis',scales.dis,['完全没有','非常强烈'])}<div class="space"></div><h2 class="question-group-title">挫败感</h2>${questionBlock('fr',scales.fr)}<div id="inline-error" class="error" aria-live="polite"></div>${buttons('完成评价')}`;}
+  function radio(name,options,selected){return `<div class="mc-list" role="radiogroup" aria-label="${h(name)}">${options.map(([v,label])=>`<label class="mc-option"><input type="radio" name="${h(name)}" value="${h(v)}" ${selected===v?'checked':''}><span>${h(label)}</span></label>`).join('')}</div>`;}
+  function checkRating(id,text){return `<div class="question"><div class="q-text">${h(text)}</div><div class="q-options" role="radiogroup" aria-label="${h(text)}">${[1,2,3,4,5,6,7].map(n=>`<span class="choice"><input type="radio" name="${id}" id="${id}_${n}" value="${n}" ${state.checks[id]===n?'checked':''}><label for="${id}_${n}">${n}</label></span>`).join('')}</div><div class="scale-ends"><span>非常不同意</span><span>非常同意</span></div></div>`;}
+  function checks(){
+    const mc1Options=[['none','未提供具体的知识来源说明'],['expert','健康领域专家提供的专业意见'],['database','权威健康知识数据库中的资料'],['unknown','不清楚／没有注意']];
+    const abilityOptions=[['low','低推理等级'],['medium','中推理等级'],['high','高推理等级'],['unknown','不清楚／没有注意']];
+    const mc3Options=[['ai','AI健康知识助手整理并呈现'],['human','真人健康专家直接作答'],['database','数据库直接显示原文'],['unknown','不清楚']];
+    return `<div class="eyebrow">阅读理解 · 第八步</div><h1 class="h1">关于刚才的信息来源、系统能力与核验结果</h1><p class="sub">以下问题用于了解你对页面内容的理解。请根据实际阅读情况作答，不必返回前面的页面。</p>
+      <section class="panel mc-panel"><div class="question"><div class="q-text">1. 刚才健康知识助手的回答展示了哪种知识来源信息？</div>${radio('MC1',mc1Options,state.checks.MC1)}</div><div class="question"><div class="q-text">2. 刚才页面将这个助手的推理能力描述为哪个等级？</div>${radio('MC_ability',abilityOptions,state.checks.MC_ability)}</div></section>
+      <div class="space"></div><section class="panel mc-panel"><p class="mini-title">请根据刚才的页面内容评价以下陈述</p><p class="check-caption">1 = 非常不同意，7 = 非常同意</p>
+      ${checkRating('SC1','刚才的回答没有说明其所依据的具体知识来源。')}
+      ${checkRating('SC2','刚才的回答明确标示了健康领域专家的意见作为知识依据。')}
+      ${checkRating('SC3','刚才的回答明确标示了权威健康知识数据库中的资料作为知识依据。')}
+      ${checkRating('AC1','页面将该助手描述为具备较强的推理能力。')}
+      ${checkRating('AC2','根据系统说明，我认为该助手适合完成多步判断任务。')}
+      ${checkRating('AC3','页面呈现的能力等级使我觉得该助手可以整合复杂信息。')}</section>
+      <div class="space"></div><section class="panel mc-panel"><div class="question"><div class="q-text">3. 刚才这段健康建议最终由谁整理并呈现？</div>${radio('MC3',mc3Options,state.checks.MC3)}</div><div class="question"><div class="q-text">4. 根据最终的独立核验结果，这份模拟运动记录是否达到每周最低有氧活动推荐量？</div>${radio('comprehension',[['met','已经达到'],['not_met','尚未达到'],['unknown','无法根据核验结果判断']],state.comprehension)}</div></section>
+      <div class="space"></div><section class="panel"><p class="mini-title">基本信息（可选择不填写）</p><div class="field-pair"><label><span class="tiny">年龄（18–99岁，选填）</span><input type="number" inputmode="numeric" min="18" max="99" id="age-field" value="${h(state.age)}" placeholder="不填也可以"></label><label><span class="tiny">性别（选填）</span><select id="gender-field"><option value="" ${!state.gender?'selected':''}>不愿透露／跳过</option><option value="female" ${state.gender==='female'?'selected':''}>女</option><option value="male" ${state.gender==='male'?'selected':''}>男</option><option value="other" ${state.gender==='other'?'selected':''}>其他</option></select></label></div></section>
+      <p class="note">请根据实际记忆作答。不会在作答页面显示操纵检验的正确答案。</p><div id="inline-error" class="error" aria-live="polite"></div>${buttons('完成问卷')}`;
+  }
+  function summary(){return `<div class="eyebrow">完成提交 · 第九步</div><h1 class="h1">问卷已填写完成</h1><p class="sub">感谢你认真阅读了情景材料并完成评价。</p><section class="panel soft"><p class="mini-title">提交说明</p><p>${preview?'当前处于研究人员预览模式，所有测试评分仅保存在当前浏览器会话中，不会被上传。':'点击“提交匿名答卷”后，实验组别、题项评分、阅读理解和阅读时长等匿名数据将通过HTTPS发送至W3Forms平台。'}</p><p class="note">本研究不收集姓名、电话或真实病史。数据由第三方W3Forms平台接收和保存；研究人员仅用于学术分析。</p></section><div class="space"></div><div id="inline-error" class="error" aria-live="polite"></div>${buttons(preview?'结束模拟体验（不上传）':'提交匿名答卷',false,'submit')}`;}
+  function debrief(){return `<div class="eyebrow">研究说明</div><h1 class="h1">感谢参与</h1><div class="success">${preview?'你已完成研究人员模拟预览，未上传任何数据。':(state.queued?'平台已接收答卷并正在排队处理。':'W3Forms已确认收到你的匿名答卷提交请求。')}</div><div class="space"></div><section class="panel"><p class="mini-title">关于刚才的实验材料</p><p class="thanks">这项研究关注：当AI健康知识助手提供错误结论、随后被独立核验时，事先展示的知识来源和系统能力说明如何影响人们的评价。</p><p>刚才的 <b>95分钟中等强度 + 20分钟高强度</b> 是虚拟运动记录。先前聊天中的“已经达标”是研究设计的<b>故意错误结论</b>；正确计算为<b>135分钟中等强度等效活动</b>，尚未达到150分钟的比较标准。</p><p>不同来源披露标签和低／中／高推理等级均是<b>研究中的模拟界面条件</b>，不代表进行了真实的AI能力评测或专家个案认证。专家组和数据库组的部分知识卡片编号是模拟资料标识，并非真实专家对该案例的结论。WHO一般指南本身并未作出错误结论；错误来自模拟AI对资料的应用。</p><p><b>权威参考：</b><a href="https://www.who.int/initiatives/behealthy/physical-activity" target="_blank" rel="noopener noreferrer">WHO：Physical activity</a>；<a href="https://www.ncbi.nlm.nih.gov/books/NBK566046/" target="_blank" rel="noopener noreferrer">WHO Guidelines on physical activity and sedentary behaviour</a>。</p><p class="note">请勿将错误聊天结论当作真实健康建议。如需具体健康建议，请咨询合格专业人员。</p></section>${preview?'<div class="action-bar"><button class="secondary" data-action="reset">重新开始预览</button></div>':''}`;}
+  function render(scroll=true){
+    clearInterval(interval);interval=null;
+    let body;
+    switch(state.stage){case 0:body=intro();break;case 1:body=chat();break;case 2:body=pre();break;case 3:body=verify();break;case 4:body=ev();break;case 5:body=post();break;case 6:body=dis();break;case 7:body=checks();break;case 8:body=summary();break;default:body=debrief();}
+    app.innerHTML=stepShell(body,state.stage===1);
+    if(scroll)window.scrollTo({top:0,behavior:'auto'});
+    if((state.stage===1||state.stage===3)&&!preview){interval=setInterval(updateTimer,600);updateTimer();}
+    save();
+  }
+  function readTime(){return Math.max(0,Math.floor((Date.now()-state.stage_enter_at)/1000));}
+  function updateTimer(){
+    if(state.stage!==1&&state.stage!==3)return;
+    const need=state.stage===1?(CFG.MIN_CHAT_SECONDS||12):(CFG.MIN_VERIFY_SECONDS||8);
+    const remaining=Math.max(0,need-readTime());
+    const next=app.querySelector('[data-action="next"]');if(next)next.disabled=remaining>0;
+    const waiting=app.querySelector('#read-wait');if(waiting)waiting.textContent=remaining>0?`请认真阅读核验信息（约${remaining}秒后可继续）。`:'请继续完成后续体验评价。';
+  }
+  function msg(s){const e=app.querySelector('#inline-error');if(e)e.textContent=s;}
+  function stageScaleKeys(){return {2:['pre','ae'],4:['ev'],5:['post'],6:['dis','fr']}[state.stage]||[];}
+  function validate(){
+    if(state.stage===0&&(!state.adult||!state.consent))return '请确认已成年并同意参与。';
+    if(state.stage===1&&!preview&&readTime()<(CFG.MIN_CHAT_SECONDS||12))return '请阅读完整的咨询对话。';
+    if(state.stage===3&&!preview&&readTime()<(CFG.MIN_VERIFY_SECONDS||8))return '请认真阅读核验信息。';
+    if(state.stage===7){
+      if(!state.checks.MC1||!state.checks.MC3||!state.checks.MC_ability||!state.comprehension||!['SC1','SC2','SC3','AC1','AC2','AC3'].every(k=>Number.isInteger(state.checks[k])))return '还有阅读理解题未作答，请完成所有必答题。';
+      if(state.age!==''&&(!/^\d{2}$/.test(String(state.age))||Number(state.age)<18||Number(state.age)>99))return '若填写年龄，请填写18至99之间的整数。';
+    }
+    for(const key of stageScaleKeys())if(!scales[key].every(([id])=>Number.isInteger(state.answers[key][id])))return '还有题目未回答，请完成当前页所有评分。';
+    return '';
+  }
+  // All participants are independently assigned one of nine conditions with equal probability.
+  // No static GitHub page can enforce equal COMPLETED quotas across devices.
+  async function next(){
+    const error=validate();if(error){msg(error);return;}
+    if(state.stage===1)state.read_seconds.chat=readTime();
+    if(state.stage===3)state.read_seconds.verify=readTime();
+    if(state.stage>=8)return;
+    state.stage++;state.stage_enter_at=Date.now();state.submit_error='';render();
+  }
+  function mean(obj){const v=Object.values(obj).map(Number);return Math.round(v.reduce((a,b)=>a+b,0)/v.length*1000)/1000;}
+  function payload(){
+    const pre=mean(state.answers.pre),post=mean(state.answers.post);
+    const correctSource={G1:'none',G2:'expert',G3:'database'}[state.source];
+    const correctAbility={A1:'low',A2:'medium',A3:'high'}[state.ability];
+    const sourceNum=sourceKeys.indexOf(state.source)+1,abilityNum=abilityKeys.indexOf(state.ability)+1;
+    return {
+      study_id:CFG.STUDY_ID||'IJIM-STUDY2-2026',schema_version:'4.0-w3forms-client-random9',session_id:state.session_id,
+      source:sourceNum,ability:abilityNum,group9:(sourceNum-1)*3+abilityNum,
+      group_code:state.source+'_'+state.ability,
+      allocation_seq:state.allocation_seq,allocation_block:state.allocation_block,
+      allocation_position:state.allocation_position,allocation_method:state.allocation_method,
+      source_label:sourceConditions[state.source].short,
+      ability_label:abilityConditions[state.ability].short,
+      TR1_pre:state.answers.pre.TR1,TR2_pre:state.answers.pre.TR2,TR3_pre:state.answers.pre.TR3,
+      AE1:state.answers.ae.AE1,AE2:state.answers.ae.AE2,AE3:state.answers.ae.AE3,
+      TR1_post:state.answers.post.TR1,TR2_post:state.answers.post.TR2,TR3_post:state.answers.post.TR3,
+      EV1:state.answers.ev.EV1,EV2:state.answers.ev.EV2,EV3:state.answers.ev.EV3,
+      DIS1:state.answers.dis.DIS1,DIS2:state.answers.dis.DIS2,DIS3:state.answers.dis.DIS3,
+      FR1:state.answers.fr.FR1,FR2:state.answers.fr.FR2,FR3:state.answers.fr.FR3,
+      TRpre:pre,TRpost:post,TL:Math.round((pre-post)*1000)/1000,
+      EV:Math.round(((8-state.answers.ev.EV1)+state.answers.ev.EV2+state.answers.ev.EV3)/3*1000)/1000,
+      DIS:mean(state.answers.dis),AE:mean(state.answers.ae),FR:mean(state.answers.fr),
+      MC1_source:state.checks.MC1,MC1_correct:state.checks.MC1===correctSource,
+      MC_ability:state.checks.MC_ability,MC_ability_correct:state.checks.MC_ability===correctAbility,
+      SC1_no_source:state.checks.SC1,SC2_expert:state.checks.SC2,SC3_database:state.checks.SC3,
+      AC1:state.checks.AC1,AC2:state.checks.AC2,AC3:state.checks.AC3,
+      MC3_respondent:state.checks.MC3,MC3_correct:state.checks.MC3==='ai',
+      CHECK_error:state.comprehension,CHECK_correct:state.comprehension==='not_met',
+      age:state.age===''?null:Number(state.age),gender:state.gender||null,
+      chat_read_sec:state.read_seconds.chat,verify_read_sec:state.read_seconds.verify,
+      source_click_count:state.source_clicks.length,consent:true,
+      started_at:state.started_at,completed_at:new Date().toISOString()
+    };
+  }
+  async function submit(){
+    if(sending || state.submitted) return;
+    if(preview){ state.stage=9; render(); return; }
+    if(!endpointReady){ msg('数据平台未完成配置，请联系研究人员。'); return; }
+    sending=true; msg('正在提交匿名答卷……');
+    const button=app.querySelector('[data-action="submit"]');
+    if(button)button.disabled=true;
+    try{
+      const raw=payload();
+      // W3Forms stores arbitrary flat fields; always send scalar values for CSV export.
+      const flat={access_key:w3Key,subject:'IJIM Study 2 anonymous research response'};
+      for(const [k,v] of Object.entries(raw)) flat[k]=(v===null||v===undefined)?'':String(v);
+      const controller=new AbortController();
+      const timer=setTimeout(()=>controller.abort(),20000);
+      let response;
+      try{
+        response=await fetch(w3Endpoint,{
+          method:'POST',mode:'cors',
+          headers:{'Content-Type':'application/json','Accept':'application/json'},
+          body:JSON.stringify(flat),signal:controller.signal
+        });
+      }finally{clearTimeout(timer);}
+      let result=null;
+      try{result=await response.json();}catch{}
+      if(!response.ok || !result || result.success!==true)
+        throw new Error(result?.error||result?.message||'未收到W3Forms成功确认（HTTP '+response.status+'）');
+      state.submitted=true;state.queued=false;state.stage=9;save();render();
+    }catch(err){
+      msg('答卷尚未得到提交成功确认，请检查网络后重试。网络不稳定时可能出现重复记录，研究者可按session_id去重。错误：'+String(err?.message||err));
+      if(button)button.disabled=false;
+    }finally{sending=false;}
+  }
+  app.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-action]');
+    if(btn){if(btn.dataset.action==='next')next();if(btn.dataset.action==='prev'&&preview&&state.stage>0){state.stage--;state.stage_enter_at=Date.now();render();}if(btn.dataset.action==='submit')submit();if(btn.dataset.action==='reset'&&preview){try{sessionStorage.removeItem(KEY);}catch{}state=initialState();chosenSource=-1;render();}}
+    const ref=e.target.closest('[data-source]');
+    if(ref){chosenSource=Number(ref.dataset.source);state.source_clicks.push(chosenSource+1);render(false);}
+  });
+  app.addEventListener('change',e=>{
+    const t=e.target;
+    if(t.dataset.check){state[t.dataset.check]=t.checked;save();}
+    if(t.dataset.scale&&scales[t.dataset.scale]){state.answers[t.dataset.scale][t.dataset.item]=Number(t.value);save();}
+    if(t.name==='comprehension'){state.comprehension=t.value;save();}
+    if(['MC1','MC3','MC_ability'].includes(t.name)){state.checks[t.name]=t.value;save();}
+    if(['SC1','SC2','SC3','AC1','AC2','AC3'].includes(t.name)){state.checks[t.name]=Number(t.value);save();}
+    if(t.id==='age-field'){state.age=t.value;save();}
+    if(t.id==='gender-field'){state.gender=t.value;save();}
+    if(t.id==='preview-source'&&preview){state.source=t.value;chosenSource=-1;save();render();}
+    if(t.id==='preview-ability'&&preview){state.ability=t.value;chosenSource=-1;save();render();}
+  });
+  render();
+})();
+</script>
+</body>
+</html>
